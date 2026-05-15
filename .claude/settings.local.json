@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(gunzip)",
+      "Read(//tmp/**)",
+      "Bash(tar -tf /tmp/design_bundle.tar)",
+      "Read(//private/tmp/**)",
+      "Bash(tar -xf design_bundle.tar)",
+      "Bash(npx tsc *)",
+      "Bash(npx react-native *)",
+      "Bash(xcodebuild -runFirstLaunch)",
+      "Bash(xcrun simctl *)",
+      "Bash(cp \"/tmp/untitled/project/민주네 가계부 v2.html\" /tmp/preview.html)",
+      "Bash(cp /tmp/untitled/project/ios-frame.jsx /tmp/ios-frame.jsx)",
+      "Bash(cp /tmp/untitled/project/app.jsx /tmp/app.jsx)",
+      "Bash(xcodebuild -showsdks)",
+      "Read(//Library/Developer/CoreSimulator/Profiles/**)",
+      "Read(//Users/gimminju/Library/Developer/CoreSimulator/Profiles/**)",
+      "Bash(xcodebuild -downloadPlatform iOS)",
+      "Bash(echo \"Download started in background, PID: $!\")",
+      "Bash(open *)"
+    ]
+  }
+}
