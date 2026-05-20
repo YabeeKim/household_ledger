@@ -5,10 +5,9 @@ import { krw, pct, signed, upDownBg, upDownColor } from '../utils/format';
 
 interface Props {
   holding: Holding;
-  hideAmounts: boolean;
 }
 
-export function StockCard({ holding: h, hideAmounts }: Props) {
+export function StockCard({ holding: h }: Props) {
   const color = upDownColor(h.gain);
   const chipBg = upDownBg(h.gain);
   const brokerEntries = Object.entries(h.brokers);
@@ -27,7 +26,7 @@ export function StockCard({ holding: h, hideAmounts }: Props) {
         </View>
         <View style={styles.right}>
           <Text style={styles.value} numberOfLines={1}>
-            {hideAmounts ? '••••••' : krw(h.value)}
+            {krw(h.value)}
             <Text style={styles.won}>원</Text>
           </Text>
           <View style={styles.gainRow}>

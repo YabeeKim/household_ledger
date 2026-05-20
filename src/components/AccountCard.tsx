@@ -5,10 +5,9 @@ import { krw, pct, signed, upDownColor } from '../utils/format';
 
 interface Props {
   account: Account;
-  hideAmounts: boolean;
 }
 
-export function AccountCard({ account: a, hideAmounts }: Props) {
+export function AccountCard({ account: a }: Props) {
   const color = upDownColor(a.gain);
 
   return (
@@ -21,7 +20,7 @@ export function AccountCard({ account: a, hideAmounts }: Props) {
       </View>
       <View style={styles.right}>
         <Text style={styles.value} numberOfLines={1}>
-          {hideAmounts ? '••••••' : krw(a.value)}
+          {krw(a.value)}
         </Text>
         <Text style={[styles.gain, { color }]} numberOfLines={1}>
           {signed(a.gain)} ({pct(a.pct)})

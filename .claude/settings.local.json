@@ -19,7 +19,19 @@
       "Read(//Users/gimminju/Library/Developer/CoreSimulator/Profiles/**)",
       "Bash(xcodebuild -downloadPlatform iOS)",
       "Bash(echo \"Download started in background, PID: $!\")",
-      "Bash(open *)"
+      "Bash(open *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(xcodebuild -version)",
+      "Bash(xcode-select -p)",
+      "Read(//Library/Developer/CoreSimulator/**)",
+      "Read(//Users/gimminju/Library/Developer/CoreSimulator/**)",
+      "Bash(ruby --version)",
+      "Bash(pod install *)",
+      "Bash(gem list *)",
+      "Bash(gem environment *)",
+      "Bash(bundle install *)",
+      "Bash(bundle exec *)"
     ]
   }
 }

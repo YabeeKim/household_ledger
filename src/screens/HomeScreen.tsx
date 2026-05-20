@@ -4,13 +4,12 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AccountCard } from '../components/AccountCard';
 import { SegmentedToggle } from '../components/SegmentedToggle';
-import { SortMenu, SortKey, SORTS } from '../components/SortMenu';
+import { SortMenu, SortKey } from '../components/SortMenu';
 import { StockCard } from '../components/StockCard';
 import {
   ACCOUNTS,
@@ -61,8 +60,6 @@ export function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [view, setView] = useState<ViewMode>('stock');
   const [sort, setSort] = useState<SortKey>('value');
-  const [hide, setHide] = useState(false);
-
   const gainColor = upDownColor(TOTAL_GAIN);
   const gainBg = upDownBg(TOTAL_GAIN);
 
@@ -74,9 +71,6 @@ export function HomeScreen() {
       <View style={styles.header}>
         <Text style={styles.appTitle}>민주네 가계부</Text>
         <View style={styles.headerIcons}>
-          <TouchableOpacity onPress={() => setHide(h => !h)} hitSlop={8} activeOpacity={0.6}>
-            <Text style={styles.iconText}>{hide ? '🙈' : '👁'}</Text>
-          </TouchableOpacity>
           <View style={styles.iconPlaceholder} />
           <View style={styles.iconPlaceholder} />
         </View>
@@ -86,7 +80,7 @@ export function HomeScreen() {
       <View style={styles.summary}>
         <Text style={styles.summaryLabel}>전체 평가금액</Text>
         <Text style={styles.totalValue} numberOfLines={1}>
-          {hide ? '••••••••' : krw(TOTAL_VALUE)}
+          {krw(TOTAL_VALUE)}
           <Text style={styles.totalValueWon}>원</Text>
         </Text>
         <View style={styles.totalGainRow}>
@@ -103,7 +97,7 @@ export function HomeScreen() {
           <View style={styles.metricItem}>
             <Text style={styles.metricLabel}>투자원금</Text>
             <Text style={styles.metricValue} numberOfLines={1}>
-              {hide ? '••••••' : krw(TOTAL_PRINCIPAL)}원
+              {krw(TOTAL_PRINCIPAL)}원
             </Text>
           </View>
           <View style={styles.divider} />
@@ -118,7 +112,7 @@ export function HomeScreen() {
           <View style={styles.metricItem}>
             <Text style={styles.metricLabel}>오늘</Text>
             <Text style={[styles.metricValue, { color: UP_COLOR }]} numberOfLines={1}>
-              {hide ? '••••' : '+' + krw(TODAY_DELTA)}
+              {'+' + krw(TODAY_DELTA)}
             </Text>
           </View>
         </View>
@@ -149,10 +143,10 @@ export function HomeScreen() {
       >
         {view === 'stock'
           ? sortHoldings(HOLDINGS, sort).map(h => (
-              <StockCard key={h.ticker} holding={h} hideAmounts={hide} />
+              <StockCard key={h.ticker} holding={h} />
             ))
           : sortAccounts(ACCOUNTS, sort).map(a => (
-              <AccountCard key={a.name} account={a} hideAmounts={hide} />
+              <AccountCard key={a.name} account={a} />
             ))}
       </ScrollView>
     </View>
@@ -181,9 +175,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
-  },
-  iconText: {
-    fontSize: 18,
   },
   iconPlaceholder: {
     width: 20,
